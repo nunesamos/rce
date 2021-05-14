@@ -19,6 +19,43 @@
 #include <time.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
+#include <signal.h>
+#include <stdbool.h>
+
+
+void rmspace(char *p){
+    for (; *p; ++p){
+        if (*p == ' ')
+            *p = '_';
+        if (*p == ':')
+            *p = '-';
+        if (*p == '\n')
+            *p = '\0';
+    }
+}
+
+
+char* takeshoot(char* dir){
+    char path[100];
+    char arg[100];
+
+    time_t rawtime;
+
+    time (&rawtime);
+    sprintf(path,"%s/Figura_%s", dir, ctime(&rawtime));
+    rmspace(path);
+    strcat(path, ".jpg");
+    strcpy(arg, "raspistill -o ");
+    strcat(arg, path);
+    system(arg);
+    char* str;
+    str = (char*) malloc (100);
+    strcpy(str, path);
+    return str;
+    free (str);
+}
+
 
 using namespace std;
 using namespace cv;
@@ -200,6 +237,11 @@ double get_avg_csv_files(string dir_path, int hour){
 }
 
 
+//void mata_proc(){
+//    puts("Até amanha!");
+//    exit(1);
+//}
+
 int main(int argc, char **argv) {
 
 	FILE *fcsv;
@@ -216,9 +258,25 @@ int main(int argc, char **argv) {
 
 	ofstream csv_file;
     char csv_filename[300];
+    char csv_flda[300];
     sprintf(csv_filename, "../CSV_files/Dados_%d_%d_%d.csv", tm_ref->tm_year + 1900, tm_ref->tm_mon + 1, tm_ref->tm_min+150);
 
-	int N_det = 0, c;
+    if (chd == 1){
+        sprintf(csv_flda, "../CSV_files/Dados_%d_%d_%d.csv", tm_ref->tm_year + 1900, tm_ref->tm_mon + 1, (tm_ref->tm_mday-1) );
+        
+        if ( !fs::exists(csv_flda) ){
+            cout << "Não há dados do dia anterior" << endl;        
+        }
+        else{
+            char send_csv_command[499];
+            cout << "Enviando email com dados do dia anterior" << endl;
+            sprintf(send_csv_command, "../send_csv.sh %s", csv_flda);
+            system(send_csv_command);
+
+        }
+    }
+
+	int N_det = -1, c;
     auto dc = opendir("../detector_architectures/");
     while (auto d = readdir(dc)) N_det++;
     
@@ -258,6 +316,91 @@ int main(int argc, char **argv) {
 	
     }
 
+    char dir[100] = "./pics";
+ //   signal(SIGINT, mata_proc);
+
+   // if (argc > 1) {
+     //   int N = *argv[2] - '0';
+       // char *path_back = argv[1];
+    //} else {
+        int N;
+        puts("Instalador, posicione a camera para tirar foto de fundo.");
+        int cont_reg;
+        for(cont_reg = 3; cont_reg>0; cont_reg--){
+            usleep(1000000);
+            printf("%d\n", cont_reg); 
+        }
+        char *path_back = takeshoot(dir);
+
+      //  printf("%s\n", path_back);
+
+        puts("Agora indique o numero maximo de pessoas para este espaço.");
+
+        scanf("%d", &N);
+//    }
+
+    char *path_shot = takeshoot(dir); // Tira uma foto
+
+    cv::Mat target_image = cv::imread(path_shot);
+    cv::Mat ref_image = cv::imread(path_back);
+    cv::Mat diff;
+    cv::Mat n_diff;
+
+    absdiff(target_image, ref_image, n_diff);
+    
+    cv::cvtColor(n_diff, diff , cv::COLOR_RGB2GRAY);
+    cv::equalizeHist(diff, diff); 
+
+    cv::Mat element = cv::getStructuringElement(cv::MORPH_RECT, cv::Size(7, 7));
+
+    cv::erode(diff, diff, element);
+    cv::blur(diff,diff,Size(111,111)); 
+
+    long int i_c,j_c;
+
+    uchar threshhold = 70;
+
+    for(i_c=0; i_c<diff.rows; i_c++)
+    {
+        for(j_c=0; j_c<diff.cols; j_c++)
+        {
+
+            if(diff.at<uchar>(i_c,j_c) < threshhold){
+                diff.at<uchar>(i_c,j_c) = 255;
+            }
+            else{
+                diff.at<uchar>(i_c,j_c) = 0;
+            }
+
+        }
+    }
+
+    int morph_size = 19;
+  
+    cv::Mat element2 = getStructuringElement(MORPH_RECT, Size(2 * morph_size + 1, 2 * morph_size + 1));
+    morphologyEx(diff, diff, MORPH_OPEN, element2);
+    morphologyEx(diff, diff, MORPH_OPEN, element2);
+
+    threshhold = (uchar) 255;
+
+    for(i_c=0; i_c<diff.rows; i_c++)
+    {
+        for(j_c=0; j_c<diff.cols; j_c++)
+        {
+            if(diff.at<uchar>(i_c,j_c) == threshhold){
+                target_image.at<Vec3b>(i_c, j_c) = Vec3b(0, 0, 0);
+            }
+
+        }
+    }
+
+    Mat outImg;
+	
+	cv::resize(target_image, outImg, cv::Size(), 0.25, 0.25);
+    cv::imwrite("diff.jpeg", target_image);
+    cv::imshow("Control", outImg);
+    cv::waitKey(0);
+
 	fs::path modelDir = fs::path(argv[1]);
 
 	ProposalNetwork::Config pConfig;
@@ -276,7 +419,7 @@ int main(int argc, char **argv) {
 	oConfig.threshold = 0.7f;
 
 	MTCNNDetector detector(pConfig, rConfig, oConfig);
-	cv::Mat target_image = cv::imread(argv[2]);
+	//cv::Mat target_image = cv::imread(argv[2]);
 
 	std::vector<rectPoints> data;
 	std::vector<Face> det;
@@ -366,10 +509,10 @@ int main(int argc, char **argv) {
 
 	csv_file.close();
 	
-	Mat outImg;
+	Mat outImg2;
 	
-	cv::resize(result_image2, outImg, cv::Size(), 0.25, 0.25);
-	cv::imshow("Resultado", outImg);
+	cv::resize(result_image2, outImg2, cv::Size(), 0.25, 0.25);
+	cv::imshow("Resultado", outImg2);
 	cv::waitKey(0);
 	cv::imwrite("imagem.jpeg", result_image2);
 	cout << "-------------------------------------------------\n" ;

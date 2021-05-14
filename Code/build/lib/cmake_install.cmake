@@ -1,4 +1,4 @@
-# Install script for directory: /home/pi/Documents/rasp_crowding_estimative/Code/lib
+# Install script for directory: /home/pi/Documents/rasp_crowding_estimative/rce/Code/lib
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

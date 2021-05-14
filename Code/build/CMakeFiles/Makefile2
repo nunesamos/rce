@@ -44,10 +44,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/pi/Documents/rasp_crowding_estimative/Code
+CMAKE_SOURCE_DIR = /home/pi/Documents/rasp_crowding_estimative/rce/Code
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/pi/Documents/rasp_crowding_estimative/Code/build
+CMAKE_BINARY_DIR = /home/pi/Documents/rasp_crowding_estimative/rce/Code/build
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -113,14 +113,14 @@ sample/clean: sample/CMakeFiles/crwd_fd.dir/clean
 lib/CMakeFiles/mtcnn.dir/all:
 	$(MAKE) -f lib/CMakeFiles/mtcnn.dir/build.make lib/CMakeFiles/mtcnn.dir/depend
 	$(MAKE) -f lib/CMakeFiles/mtcnn.dir/build.make lib/CMakeFiles/mtcnn.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/rasp_crowding_estimative/Code/build/CMakeFiles --progress-num=3,4,5,6,7 "Built target mtcnn"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/rasp_crowding_estimative/rce/Code/build/CMakeFiles --progress-num=3,4,5,6,7 "Built target mtcnn"
 .PHONY : lib/CMakeFiles/mtcnn.dir/all
 
 # Build rule for subdir invocation for target.
 lib/CMakeFiles/mtcnn.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/rasp_crowding_estimative/Code/build/CMakeFiles 5
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/rasp_crowding_estimative/rce/Code/build/CMakeFiles 5
 	$(MAKE) -f CMakeFiles/Makefile2 lib/CMakeFiles/mtcnn.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/rasp_crowding_estimative/Code/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/rasp_crowding_estimative/rce/Code/build/CMakeFiles 0
 .PHONY : lib/CMakeFiles/mtcnn.dir/rule
 
 # Convenience name for target.
@@ -140,14 +140,14 @@ lib/CMakeFiles/mtcnn.dir/clean:
 sample/CMakeFiles/crwd_fd.dir/all: lib/CMakeFiles/mtcnn.dir/all
 	$(MAKE) -f sample/CMakeFiles/crwd_fd.dir/build.make sample/CMakeFiles/crwd_fd.dir/depend
 	$(MAKE) -f sample/CMakeFiles/crwd_fd.dir/build.make sample/CMakeFiles/crwd_fd.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/rasp_crowding_estimative/Code/build/CMakeFiles --progress-num=1,2 "Built target crwd_fd"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Documents/rasp_crowding_estimative/rce/Code/build/CMakeFiles --progress-num=1,2 "Built target crwd_fd"
 .PHONY : sample/CMakeFiles/crwd_fd.dir/all
 
 # Build rule for subdir invocation for target.
 sample/CMakeFiles/crwd_fd.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/rasp_crowding_estimative/Code/build/CMakeFiles 7
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/rasp_crowding_estimative/rce/Code/build/CMakeFiles 7
 	$(MAKE) -f CMakeFiles/Makefile2 sample/CMakeFiles/crwd_fd.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/rasp_crowding_estimative/Code/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/rasp_crowding_estimative/rce/Code/build/CMakeFiles 0
 .PHONY : sample/CMakeFiles/crwd_fd.dir/rule
 
 # Convenience name for target.

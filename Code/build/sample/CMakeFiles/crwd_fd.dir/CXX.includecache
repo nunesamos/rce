@@ -38,7 +38,7 @@ face.h
 opencv2/dnn.hpp
 -
 
-/home/pi/Documents/rasp_crowding_estimative/Code/sample/src/main.cpp
+/home/pi/Documents/rasp_crowding_estimative/rce/Code/sample/src/main.cpp
 boost/filesystem.hpp
 -
 boost/filesystem/path.hpp
@@ -76,6 +76,12 @@ time.h
 stdio.h
 -
 stdlib.h
+-
+unistd.h
+-
+signal.h
+-
+stdbool.h
 -
 
 /usr/local/include/opencv4/opencv2/calib3d.hpp

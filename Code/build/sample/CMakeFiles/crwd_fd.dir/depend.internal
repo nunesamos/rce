@@ -7,7 +7,7 @@ sample/CMakeFiles/crwd_fd.dir/src/main.cpp.o
  ../lib/include/mtcnn/onet.h
  ../lib/include/mtcnn/pnet.h
  ../lib/include/mtcnn/rnet.h
- /home/pi/Documents/rasp_crowding_estimative/Code/sample/src/main.cpp
+ /home/pi/Documents/rasp_crowding_estimative/rce/Code/sample/src/main.cpp
  /usr/local/include/opencv4/opencv2/calib3d.hpp
  /usr/local/include/opencv4/opencv2/core.hpp
  /usr/local/include/opencv4/opencv2/core/affine.hpp

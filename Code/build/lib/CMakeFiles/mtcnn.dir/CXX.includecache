@@ -42,25 +42,25 @@ face.h
 opencv2/dnn.hpp
 -
 
-/home/pi/Documents/rasp_crowding_estimative/Code/lib/src/detector.cc
+/home/pi/Documents/rasp_crowding_estimative/rce/Code/lib/src/detector.cc
 mtcnn/detector.h
-/home/pi/Documents/rasp_crowding_estimative/Code/lib/src/mtcnn/detector.h
+/home/pi/Documents/rasp_crowding_estimative/rce/Code/lib/src/mtcnn/detector.h
 
-/home/pi/Documents/rasp_crowding_estimative/Code/lib/src/onet.cc
+/home/pi/Documents/rasp_crowding_estimative/rce/Code/lib/src/onet.cc
 mtcnn/onet.h
-/home/pi/Documents/rasp_crowding_estimative/Code/lib/src/mtcnn/onet.h
+/home/pi/Documents/rasp_crowding_estimative/rce/Code/lib/src/mtcnn/onet.h
 mtcnn/helpers.h
-/home/pi/Documents/rasp_crowding_estimative/Code/lib/src/mtcnn/helpers.h
+/home/pi/Documents/rasp_crowding_estimative/rce/Code/lib/src/mtcnn/helpers.h
 
-/home/pi/Documents/rasp_crowding_estimative/Code/lib/src/pnet.cc
+/home/pi/Documents/rasp_crowding_estimative/rce/Code/lib/src/pnet.cc
 mtcnn/pnet.h
-/home/pi/Documents/rasp_crowding_estimative/Code/lib/src/mtcnn/pnet.h
+/home/pi/Documents/rasp_crowding_estimative/rce/Code/lib/src/mtcnn/pnet.h
 
-/home/pi/Documents/rasp_crowding_estimative/Code/lib/src/rnet.cc
+/home/pi/Documents/rasp_crowding_estimative/rce/Code/lib/src/rnet.cc
 mtcnn/rnet.h
-/home/pi/Documents/rasp_crowding_estimative/Code/lib/src/mtcnn/rnet.h
+/home/pi/Documents/rasp_crowding_estimative/rce/Code/lib/src/mtcnn/rnet.h
 mtcnn/helpers.h
-/home/pi/Documents/rasp_crowding_estimative/Code/lib/src/mtcnn/helpers.h
+/home/pi/Documents/rasp_crowding_estimative/rce/Code/lib/src/mtcnn/helpers.h
 
 /usr/local/include/opencv4/opencv2/calib3d.hpp
 opencv2/core.hpp

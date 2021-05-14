@@ -6,5 +6,5 @@ CXX_FLAGS =   -std=gnu++11
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/pi/Documents/rasp_crowding_estimative/Code/sample/include -I/home/pi/Documents/rasp_crowding_estimative/Code/lib/include -isystem /usr/local/include/opencv4 
+CXX_INCLUDES = -I/home/pi/Documents/rasp_crowding_estimative/rce/Code/sample/include -I/home/pi/Documents/rasp_crowding_estimative/rce/Code/lib/include -isystem /usr/local/include/opencv4 
 

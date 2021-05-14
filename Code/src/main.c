@@ -17,16 +17,20 @@ int main(int argc, char **argv){
 
     if (argc > 1) {
         int N = *argv[2] - '0';
-        char *path_back = argv[1];
+        char *aux_back = argv[1];
     } else {
         int N;
+        char path_back[100];
         puts("Instalador, posicione a camera para tirar foto de fundo.");
         int i;
         for(i = 3; i>0; i--){
             usleep(1000000);
             printf("%d\n", i); 
         }
-        char *path_back = takeshoot(dir);
+        char *aux_back = takeshoot(dir);
+
+        strcpy(path_back, ".");
+        strcat(path_back, aux_back);
 
         printf("%s\n", path_back);
 
