@@ -1,0 +1,2 @@
+/usr/bin/ar qc libmtcnn.a  CMakeFiles/mtcnn.dir/src/detector.cc.o CMakeFiles/mtcnn.dir/src/onet.cc.o CMakeFiles/mtcnn.dir/src/pnet.cc.o CMakeFiles/mtcnn.dir/src/rnet.cc.o
+/usr/bin/ranlib libmtcnn.a
